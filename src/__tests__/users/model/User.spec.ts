@@ -7,6 +7,7 @@ describe("User model", () => {
     const user = new User();
 
     Object.assign(user, {
+      admin: false,
       name: "Atlas",
       email: "atlas@fromspace.com",
       created_at: new Date(),

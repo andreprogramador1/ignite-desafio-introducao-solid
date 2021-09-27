@@ -95,13 +95,13 @@ describe("[GET] /users/:user_id", () => {
 describe("[GET] /users", () => {
   it("should be able to list all users", async () => {
     const usersRepository = UsersRepository.getInstance();
-
+    usersRepository.delete();
     const user1 = usersRepository.create({
       name: String(Math.random()),
       email: String(Math.random()),
     });
-
     usersRepository.turnAdmin(user1);
+    console.log("USERADMIN", user1);
 
     const user2 = usersRepository.create({
       name: String(Math.random()),
@@ -114,7 +114,7 @@ describe("[GET] /users", () => {
     });
 
     const response = await request(app).get("/users").set("user_id", user1.id);
-
+    console.log("response", response);
     expect(
       response.body.map((res) => ({
         ...res,
